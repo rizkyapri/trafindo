@@ -16,14 +16,14 @@ class AndonnoController extends Controller
     public function index(Request $request)
     {
         // $andonno = AndonNo::OrderBy('workcenter')
-        // ->join('tblAndonCat','tblandonno.CodeAndon','=','tblAndonCat.id')
+        // ->join('tblAndonCat','tblAndonNo.CodeAndon','=','tblAndonCat.id')
         // ->get();
         
 
         if ($request->ajax()) {
             $data = AndonNo::OrderBy('workcenter')
-                    ->join('tblAndonCat','tblandonno.CodeAndon','=','tblAndonCat.CodeAndon')
-                    ->select('tblandonno.id','tblandonno.Andon_No','tblandonno.Andon_Color','tblandonno.Workcenter','tblAndonCat.CodeAndon','tblAndonCat.CategoryProblem');
+                    ->join('tblAndonCat','tblAndonNo.CodeAndon','=','tblAndonCat.CodeAndon')
+                    ->select('tblAndonNo.id','tblAndonNo.Andon_No','tblAndonNo.Andon_Color','tblAndonNo.Workcenter','tblAndonCat.CodeAndon','tblAndonCat.CategoryProblem');
             // Filter by WONumber
             return DataTables::of($data)
             ->addIndexColumn()
