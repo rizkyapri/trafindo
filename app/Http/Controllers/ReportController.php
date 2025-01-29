@@ -58,42 +58,42 @@ class ReportController extends Controller
         if ($department === 'PL 1') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             return view('report.index', compact('woopr', 'dateRange', 'department',  'hours'));
         } elseif ($department === 'PL 2') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             return view('report.index', compact('woopr', 'dateRange', 'department', 'hours'));
         } elseif ($department === 'PL 3') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
-                ->select('tblwo.WOnborig', 'tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig')
+                ->whereIn('tblWOOpr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
+                ->select('tblWO.WOnborig', 'tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig')
                 ->get();
 
 
@@ -104,42 +104,42 @@ class ReportController extends Controller
         } elseif ($department === 'REPAIR') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['SP11', 'SP12', 'SP13'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['SP11', 'SP12', 'SP13'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             return view('report.index', compact('woopr', 'dateRange', 'department',   'hours'));
         } elseif ($department === 'DRY TYPE') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             return view('report.index', compact('woopr', 'dateRange', 'department',   'hours'));
         } elseif ($department === 'CTVT') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             return view('report.index', compact('woopr', 'dateRange', 'department',   'hours'));
@@ -170,12 +170,12 @@ class ReportController extends Controller
         }
         // $yearAndMonth = explode('-', $date);
 
-        $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+        $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
             ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
             ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-            ->where('tblwo.WOnborig', $WOnborig)
-            ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+            ->where('tblWO.WOnborig', $WOnborig)
+            ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
             ->groupBy('tblEmployeesTasks.OprID')
             ->get();
 
@@ -237,12 +237,12 @@ class ReportController extends Controller
         }
         // $yearAndMonth = explode('-', $date);
 
-        $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+        $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
             ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
             ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-            ->where('tblwo.WOnborig', $WOnborig)
-            ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+            ->where('tblWO.WOnborig', $WOnborig)
+            ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
             ->groupBy('tblEmployeesTasks.OprID')
             ->get();
         // dd($report);
@@ -286,14 +286,14 @@ class ReportController extends Controller
         if ($department === 'PL 1') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -302,12 +302,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -322,14 +322,14 @@ class ReportController extends Controller
         } elseif ($department === 'PL 2') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -338,12 +338,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -357,14 +357,14 @@ class ReportController extends Controller
 
         } elseif ($department === 'PL 3') {
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
-                ->select('tblwo.WOnborig', 'tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig')
+                ->whereIn('tblWOOpr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
+                ->select('tblWO.WOnborig', 'tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig')
                 ->get();
 
 
@@ -374,12 +374,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -396,14 +396,14 @@ class ReportController extends Controller
         } elseif ($department === 'REPAIR') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['SP11', 'SP12', 'SP13'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['SP11', 'SP12', 'SP13'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -412,12 +412,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -432,14 +432,14 @@ class ReportController extends Controller
         } elseif ($department === 'DRY TYPE') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -448,12 +448,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -468,14 +468,14 @@ class ReportController extends Controller
         } elseif ($department === 'CTVT') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -484,12 +484,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -518,12 +518,12 @@ class ReportController extends Controller
         }
         // $yearAndMonth = explode('-', $date);
 
-        $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+        $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+            ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
             ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
             ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-            ->where('tblwo.WOnborig', $WOnborig)
-            ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+            ->where('tblWO.WOnborig', $WOnborig)
+            ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
             ->groupBy('tblEmployeesTasks.OprID')
             ->get();
 
@@ -565,14 +565,14 @@ class ReportController extends Controller
         if ($department === 'PL 1') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP01', 'TP02', 'TP03', 'TP04', 'TP05', 'TP06', 'TP07'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -581,12 +581,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -601,14 +601,14 @@ class ReportController extends Controller
         } elseif ($department === 'PL 2') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -617,12 +617,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
 
@@ -636,14 +636,14 @@ class ReportController extends Controller
         } elseif ($department === 'PL 2') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['TP41', 'TP42', 'TP43', 'TP44', 'TP45', 'TP46', 'TP47'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -652,12 +652,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -671,14 +671,14 @@ class ReportController extends Controller
 
         } elseif ($department === 'PL 3') {
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
-                ->select('tblwo.WOnborig', 'tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig')
+                ->whereIn('tblWOOpr.Workcenter', ['TP51', 'TP52', 'TP53', 'TP54', 'TP55', 'TP56', 'TP57', 'TP58'])
+                ->select('tblWO.WOnborig', 'tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig')
                 ->get();
 
 
@@ -688,12 +688,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -710,14 +710,14 @@ class ReportController extends Controller
         } elseif ($department === 'REPAIR') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['SP11', 'SP12', 'SP13'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['SP11', 'SP12', 'SP13'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -726,12 +726,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -746,14 +746,14 @@ class ReportController extends Controller
         } elseif ($department === 'DRY TYPE') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['DP41', 'DP42', 'DP43', 'DP44', 'DP45'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -762,12 +762,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
@@ -782,14 +782,14 @@ class ReportController extends Controller
         } elseif ($department === 'CTVT') {
             // dd($request->all());
 
-            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblwoopr.EmployeeID')
-                ->join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
+            $woopr = WOOpr::join('tblEmployees', 'tblEmployees.id', '=', 'tblWOOpr.EmployeeID')
+                ->join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
                 ->join('tbldepartment', 'tbldepartment.id', '=', 'tblEmployees.department_id')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', ["$startDate 00:00:00", "$endDate 23:59:59"])
-                ->whereIn('tblwoopr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
-                ->select('tblwo.WOnborig','tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
-                ->groupBy('tblwo.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
+                ->whereIn('tblWOOpr.Workcenter', ['CP13', 'CP17', 'CP17', 'CP18'])
+                ->select('tblWO.WOnborig','tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber', 'tbldepartment.name as department')
+                ->groupBy('tblWO.WOnborig') // Menggunakan GROUP BY pada kolom yang ingin dijadikan acuan
                 ->get();
 
             // Ambil data WOnborig dari hasil query
@@ -798,12 +798,12 @@ class ReportController extends Controller
             // AMBIL TAHUN DAN BULAN
             // $date = Carbon::parse($startDate)->format('Y-m');
 
-            $report = WOOpr::join('tblwo', 'tblwo.id', '=', 'tblwoopr.WOID')
-                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblwoopr.id')
+            $report = WOOpr::join('tblWO', 'tblWO.id', '=', 'tblWOOpr.WOID')
+                ->join('tblEmployeesTasks', 'tblEmployeesTasks.OprID', '=', 'tblWOOpr.id')
                 ->join('tblEmployees', 'tblEmployees.id', '=', 'tblEmployeesTasks.EmployeeID')
                 ->whereBetween('tblEmployeesTasks.TaskDateStart', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-                ->where('tblwo.WOnborig', $WOnborig)
-                ->select('tblwo.*', 'tblwoopr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
+                ->where('tblWO.WOnborig', $WOnborig)
+                ->select('tblWO.*', 'tblWOOpr.*', 'tblEmployeesTasks.*', 'tblEmployeesTasks.EmployeeID as EmployeeIDtasks', 'tblEmployees.Name', 'tblEmployees.EmployeeNumber')
                 ->groupBy('tblEmployeesTasks.OprID')
                 ->get();
             // foreach ($woopr as $item) {
