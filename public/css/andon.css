@@ -1,0 +1,197 @@
+/* Tampilan default */
+ul {
+   display: flex;
+}
+
+ul li .icon {
+   font-size: 35px;
+   margin: 0 60px;
+}
+
+.stepper1,
+.stepper2,
+.stepper3,
+.stepper4,
+.stepper5 {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+/* Warna icon sesuai kategori */
+.icon.color-1 {
+   color: #fa994b;
+}
+
+.icon.color-2 {
+   color: #8699a8;
+}
+
+.icon.color-3 {
+   color: #f5c861;
+}
+
+.icon.color-4 {
+   color: #2496d2;
+}
+
+.icon.color-5 {
+   color: #3c9c30;
+}
+
+/* Tampilan progress */
+ul li .text {
+   font-weight: 600;
+}
+
+ul li .progress {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   background-color: rgba(68, 68, 68, 0.781);
+   margin: 14px 0;
+   display: grid;
+   place-items: center;
+   color: #fff;
+   position: relative;
+   cursor: pointer;
+}
+
+.progress::after {
+   content: " ";
+   position: absolute;
+   width: 135px;
+   height: 5px;
+   right: 30px;
+}
+
+.one::after {
+   width: 0;
+   height: 0;
+}
+
+ul li .progress .uil {
+   display: none;
+}
+
+ul li .progress p {
+   font-size: 13px;
+}
+
+li .active::after {
+   background-color: rgba(68, 68, 68, 0.781);
+}
+
+ul li .active p {
+   display: none;
+}
+
+ul li .active .uil {
+   font-size: 20px;
+   display: flex;
+}
+
+/* Responsif */
+.box-container {
+   display: flex;
+   justify-content: space-between;
+}
+
+.box {
+   width: 250px;
+   height: 35px;
+   margin: 10px;
+   display: inline-block;
+   border: 2px solid #000;
+   border-radius: 5px;
+}
+
+.box.one {
+   background-color: #ffff;
+   margin-left: 160px;
+}
+
+.box.two {
+   background-color: #ffff;
+   margin-right: 10px;
+}
+
+.box.three {
+   background-color: #fff;
+   margin-right: 8px;
+}
+
+.box.four {
+   background-color: #FFFF;
+   margin-right: 140px;
+}
+
+.horizontal-boxes {
+   display: flex;
+   align-items: center;
+}
+
+.box-delays {
+   width: 220px;
+   height: 35px;
+   margin-left: 15px;
+   margin-top: auto;
+   background-color: #fff;
+   border: 2px solid #000;
+}
+
+.box-delays span {
+   margin-right: 5px;
+}
+
+.center-text {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+
+.hr {
+   color: #000;
+}
+
+.stepper li {
+   padding-left: 0px;
+   padding-right: 15px;
+}
+
+.checked .progress::before {
+   content: "\2713";
+   background-color: #3c9c30; 
+   font-size: 25px; 
+   width: 30px; 
+   height: 30px;
+   border-radius: 50%; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+
+.checked .text {
+   font-weight: bold;
+}
+
+/* Responsif untuk layar kecil */
+@media screen and (max-width: 767px) {
+   ul {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   ul li .icon {
+      margin: 20px 0;
+   }
+
+   .progress::after {
+      content: none;
+   }
+   
+}
+

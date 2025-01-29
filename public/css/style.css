@@ -1,0 +1,33 @@
+.fa-play-circle {
+    font-size: 50px; 
+    color: red; 
+    transition: transform 0.3s, color 0.3s; 
+ }
+ .fa-play-circle:hover {
+    transform: scale(1.3);  
+ }
+ .fa-circle-stop {
+    font-size: 50px; 
+    color: black; 
+    transition: transform 0.3s, color 0.3s; 
+ }
+ .fa-circle-stop:hover {
+    transform: scale(1.3);  
+ }
+ .fa-circle-check {
+    font-size: 50px; 
+    color: green; 
+    transition: transform 0.3s, color 0.3s; 
+ }
+ .fa-circle-check:hover {
+    transform: scale(1.3); 
+ }
+ 
+ .fa-circle-pause {
+    font-size: 50px; 
+    color: gray; 
+    transition: transform 0.3s, color 0.3s; 
+ }
+ .fa-circle-pause:hover {
+    transform: scale(1.3);
+ }
